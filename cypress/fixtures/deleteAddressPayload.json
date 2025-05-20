@@ -1,0 +1,8 @@
+{
+    "variables": {
+        "input": {
+            "addressId": "cfgi2Ws8"
+        }
+    },
+    "query": "mutation ($input: RemoveAddressInput!) {\n  removeAddress(input: $input) {\n    id\n    __typename\n  }\n}\n"
+}

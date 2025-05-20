@@ -1,0 +1,22 @@
+{
+    "variables": {
+        "input": {
+            "address": {
+                "firstName": "New",
+                "lastName": "Address",
+                "phone": "123456789",
+                "addressLine1": "St. Mary & St. Michael Rc Church, The Presbytery, 2 Lukin Street",
+                "addressLine2": "",
+                "addressLine3": "",
+                "city": "LONDON",
+                "county": "",
+                "postalCode": "E1 0AA",
+                "country": "GB",
+                "deliveryInstructionOption": "",
+                "deliveryInstructionNote": ""
+            },
+            "defaultAddress": false
+        }
+    },
+    "query": "mutation ($input: AddAddressInput) {\n  addAddress(input: $input) {\n    addressId\n    customer {\n      id\n      firstName\n      lastName\n      customerNumber\n      contactNumber\n      email\n      defaultShippingAddress {\n        ...FragmentAddress\n        __typename\n      }\n      shippingAddresses {\n        ...FragmentAddress\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment FragmentAddress on Address {\n  id\n  firstName\n  lastName\n  addressLine1\n  addressLine2\n  addressLine3\n  postalCode\n  city\n  county\n  country\n  phone\n  mobile\n  email\n  isDefaultAddress\n  deliveryInstructionNote\n  deliveryInstructionOption\n  __typename\n}\n"
+}

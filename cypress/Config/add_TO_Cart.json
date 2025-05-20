@@ -1,0 +1,60 @@
+{
+    "operationName": "AddToCart",
+    "variables": {
+        "input": {
+            "sku": "CCHTU1000",
+            "occasion": "Get Well Soon",
+            "cardMessage": "",
+            "deliveryDate": "2025-03-11",
+            "deliveryAddress": {
+                "firstName": "Test",
+                "lastName": "Palla",
+                "addressLine1": "St. Mary & St. Michael Rc Church, The Presbytery, 2 Lukin Street",
+                "addressLine2": "",
+                "addressLine3": "",
+                "city": "LONDON",
+                "county": "",
+                "country": "GB",
+                "postalCode": "E1 0AA",
+                "phone": "5343434343",
+                "id": "n8Gm3M_W",
+                "isFuneralDirector": false
+            },
+            "deliveryStandardRuleId": "4343",
+            "deliveryOptionalRuleId": "",
+            "deliveryInstructionOption": "",
+            "deliveryInstructionNote": "",
+            "deliveryPassSku": "",
+            "isInternational": false,
+            "isOverseas": false,
+            "isCourierUpgrade": false,
+            "categoryKey": "interflora-anniversary-uk",
+            "specialInstructions": "",
+            "isDropship": false,
+            "openPrice": "",
+            "collectionDate": "2025-03-11",
+            "collectionShopAddress": {
+                "rotationWeight": "",
+                "executingMemberNo": "",
+                "latitude": "",
+                "longitude": "",
+                "distance": "",
+                "openingTime": "",
+                "closingTime": "",
+                "countyName": "",
+                "postCode": "",
+                "countryType": "",
+                "name": "",
+                "addLine2": "",
+                "town": "",
+                "phoneNo": "",
+                "custLatitude": "",
+                "custLongitude": ""
+            },
+            "collectionShopName": "",
+            "isClickAndCollect": false,
+            "collectionServiceCode": ""
+        }
+    },
+    "query": "mutation AddToCart($input: AddToCartInput!) {\n  addToCart(input: $input) {\n    addedLineItemId\n    consignmentLimitReached\n    hasFinishingTouches\n    cart {\n      ...FragmentCart\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment FragmentCart on Cart {\n  id\n  maxCheckoutStep\n  worldpayRedirectUrl\n  paymentMethod\n  unavailableItems {\n    lineItemId\n    name\n    checkoutError\n    __typename\n  }\n  showMarketingPreferences\n  cutOff {\n    secondsRemaining\n    day\n    isInPast\n    __typename\n  }\n  ...FragmentBaseOrder\n  __typename\n}\n\nfragment FragmentBaseOrder on BaseOrder {\n  marketing {\n    online\n    post\n    email\n    sms\n    __typename\n  }\n  subtotal {\n    centAmount\n    fractionDigits\n    currencyCode\n    formatted\n    __typename\n  }\n  deliveryPassType\n  deliveryPassDiscount {\n    centAmount\n    fractionDigits\n    currencyCode\n    formatted\n    __typename\n  }\n  totalDeliveryPassDiscount {\n    centAmount\n    fractionDigits\n    currencyCode\n    formatted\n    __typename\n  }\n  deliveryCost {\n    centAmount\n    fractionDigits\n    currencyCode\n    formatted\n    __typename\n  }\n  totalPrice {\n    centAmount\n    fractionDigits\n    currencyCode\n    formatted\n    __typename\n  }\n  totalItems\n  consignments {\n    id\n    isMaxQuantity\n    isDigital\n    isClickAndCollect\n    cutOff {\n      secondsRemaining\n      day\n      isInPast\n      __typename\n    }\n    rotation\n    delivery {\n      date\n      address {\n        addressLine1\n        addressLine2\n        addressLine3\n        postalCode\n        city\n        county\n        country\n        id\n        __typename\n      }\n      serviceCode\n      serviceDescription\n      serviceType\n      charge {\n        formatted\n        __typename\n      }\n      __typename\n    }\n    collection {\n      date\n      address {\n        rotationWeight\n        executingMemberNo\n        latitude\n        longitude\n        distance\n        openingTime\n        closingTime\n        countyName\n        postCode\n        countryType\n        name\n        addLine2\n        town\n        phoneNo\n        custLatitude\n        custLongitude\n        __typename\n      }\n      __typename\n    }\n    items {\n      lineItem {\n        id\n        sku\n        productId\n        product {\n          key\n          name\n          countryCode\n          isInternational\n          isOverseas\n          categoryNames\n          isDropship\n          __typename\n        }\n        name\n        url\n        price {\n          centAmount\n          fractionDigits\n          currencyCode\n          formatted\n          __typename\n        }\n        quantity\n        images {\n          url\n          __typename\n        }\n        occasion\n        cardMessage\n        deliveryDate\n        deliveryInstructionOption\n        deliveryInstructionNote\n        specialInstructions\n        deceasedName\n        funeralServiceDate\n        funeralServiceTime\n        promotionalText\n        attributes {\n          name\n          value\n          __typename\n        }\n        category {\n          name\n          ancestors {\n            name\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      finishingTouchLineItems {\n        id\n        sku\n        productId\n        isGiftItem\n        product {\n          key\n          name\n          categoryNames\n          __typename\n        }\n        name\n        url\n        price {\n          centAmount\n          fractionDigits\n          currencyCode\n          formatted\n          __typename\n        }\n        quantity\n        images {\n          url\n          __typename\n        }\n        category {\n          name\n          ancestors {\n            name\n            __typename\n          }\n          __typename\n        }\n        __typename\n      }\n      recipient {\n        firstName\n        lastName\n        phone\n        isFuneralDirector\n        __typename\n      }\n      __typename\n    }\n    __typename\n  }\n  billingAddress {\n    ...FragmentAddress\n    __typename\n  }\n  couponCode\n  couponDiscount {\n    centAmount\n    fractionDigits\n    currencyCode\n    formatted\n    __typename\n  }\n  __typename\n}\n\nfragment FragmentAddress on Address {\n  id\n  firstName\n  lastName\n  addressLine1\n  addressLine2\n  addressLine3\n  postalCode\n  city\n  county\n  country\n  phone\n  mobile\n  email\n  isDefaultAddress\n  deliveryInstructionNote\n  deliveryInstructionOption\n  __typename\n}\n"
+}
